@@ -85,3 +85,19 @@ def post_picture(request):
         'form': form
     }
     return render(request, 'all-instagram/post_picture.html', context)
+
+def post(request, pk):
+    post = Image.objects.get(pk=pk)
+    try:
+        like = Like.objects.get(post=post, user=request.user)
+        like = 1
+    except:
+        like = None
+        like = 0
+
+    context = {
+        'post': post,
+        'like': like
+    }
+    return render(request, 'all-instagram/post.html', context)
+
