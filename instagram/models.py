@@ -1,7 +1,7 @@
 from django.db import models
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
-from django.contrib.auth.models import User,
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Profile(models.Model):
@@ -10,4 +10,11 @@ class Profile(models.Model):
     following = models.ManyToManyField('Profile',related_name="following_profile", blank=True)
     profile_pic = ProcessedImageField(upload_to='profile_pics',format="JPEG",options={'quality':100},null=True,blank=True)
     bio = models.CharField(max_length=200, null=True, blank=True)
+
+    def get_number_of_followers(self):
+        print(self.followers.count())
+        if self.followers.count():
+            return self.followers.count()
+        else:
+            return 0
 
