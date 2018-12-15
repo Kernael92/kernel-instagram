@@ -101,3 +101,32 @@ def post(request, pk):
     }
     return render(request, 'all-instagram/post.html', context)
 
+def likes(request, pk):
+    
+
+    post = Image.objects.get(pk=pk)
+    profiles = Like.objects.filter(post=post)
+
+    context = {
+        'header': 'Likes',
+        'profiles': profiles
+    }
+    return render(request, 'all-instagram/follow_list.html', context)
+
+def add_like(request):
+    post_pk = request.POST.get('post_pk')
+    post =Image.objects.get(pk=post_pk)
+    try:
+        like = Like(post=post, user=request.user)
+        like.save()
+        result = 1
+    except:
+        like = Like.objects.get(post=post, user=request.user)
+        like.delete()
+        result = 0
+
+    return {
+        'result': result,
+        'post_pk': post_pk
+    }
+
