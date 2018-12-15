@@ -13,6 +13,30 @@ body {
     width: 100%;
     margin: 20px auto;
 }
+.card {
+    background-color: #fff;
+    margin-bottom: 50px;
+    border: 1px solid #efefef;
+    border-radius: 3px;
+}
+.poster__profilepic {
+    border-radius: 100%;
+    max-width: 30px;
+    max-height: 30px;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+.poster__name{
+    color: #262626;
+    font-weight: bold;
+    
+}
+.poster__timestamp {
+    float: right;
+    color: #999;
+}
+
   
 .content-wrapper {
     margin-top: 57px;
