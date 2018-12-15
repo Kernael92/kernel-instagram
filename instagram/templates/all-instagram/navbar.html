@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <nav class='navbar navbar-topnav' id="man-nav">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand"href="#">Instagram</a>
+                    <button type="button" data-toggle="collapse" data-target="#navbar-main" class="navbar-toggle">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+            </div>
+            <!-- Dropdown -->
+            <div id="navbar-main" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- {% if request.user.is_authenticated %} -->
+                            <li>
+                              <a href="{% url 'index' %}">
+                                <i class="fa fa-home {% if request.resolver_match.url_name == 'index' %}active{% endif %}" aria-hidden="true"></i>
+                              </a>
+                            </li>
+                        <li><a href="/accounts/password/change">Change Password</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+                <!-- {%else%} -->
+                <!-- <li><a class="btn btn-primary" href="/accounts/login">Login</a></li>
+                {%endif%} -->
+            <!-- </div> -->
+        </nav>
+    </body>
+</html>
