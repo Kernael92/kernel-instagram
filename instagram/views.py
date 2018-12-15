@@ -25,3 +25,23 @@ def profile(request, username):
         'profile': profile
     }
     return render(request, 'all-instagram/profile.html', context)
+
+def profile_settings(request, username):
+    user = User.objects.get(username=username)
+    if request.user != user:
+        return redirect('index')
+
+    if request.method == 'POST':
+        print(request.POST)
+        form = ProfileEditForm(request.POST, instance=user.profile, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('profile', kwargs={'username': user.username}))
+    else:
+        form = ProfileEditForm(instance=user.userprofile)
+
+    context = {
+        'user': user,
+        'form': form
+    }
+    return render(request, 'all-instagram/profile_settings.html', context)
