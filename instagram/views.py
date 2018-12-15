@@ -56,3 +56,32 @@ def followers(request, username):
     }
 
     return render(request, 'all-instagram/follow_list.html', context)
+def following(request, username):
+    user = User.objects.get(username=username)
+    user_profile =Profile.objects.get(user=user)
+    profiles = user_profile.following.all
+
+    context = {
+        'header': 'Following',
+        'profiles': profiles
+    }
+    return render(request, 'all-instagram/follow_list.html', context)
+
+def post_picture(request):
+    if request.method == 'POST':
+        form = PostPictureForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            post = Image(user_profile=request.user.profile,
+                          image_name=request.POST['image_name'],
+                          image=request.FILES['image'],
+                          image_caption=request.POST['image_caption'],
+                          posted_on=datetime.datetime.now())
+            post.save()
+            return redirect(reverse('profile', kwargs={'username': request.user.username}))
+    else:
+        form = PostPictureForm()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'all-instagram/post_picture.html', context)
