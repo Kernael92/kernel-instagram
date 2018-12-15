@@ -11,5 +11,5 @@ from django.core.urlresolvers import reverse
 
 # Create your views here.
 def index(request):
-    images = image.objects.all()
+    images = Image.objects.all()
     return render(request, 'all-instagram/index.html', {"images":images})
