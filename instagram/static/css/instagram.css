@@ -1,0 +1,41 @@
+html {
+    height: 100%;
+}
+body {
+    padding: 20px;
+    margin: 20px;
+    border: 20px;
+
+}
+
+.cards-listing {
+    max-width: 600px;
+    width: 100%;
+    margin: 20px auto;
+}
+  
+.content-wrapper {
+    margin-top: 57px;
+    margin-bottom: 60px;
+    background-color: #fafafa;
+    /* @media screen and (max-width : 768px) {
+        margin-top: 50px;
+    } */
+ }
+
+
+
+
+
+
+
+
+
+.navbar {
+    background-color: #fff;
+    border-bottom-color: #dbdbdb;
+}
+.fa {
+    font-size: 25px;
+    color: #333 * 3;
+}
