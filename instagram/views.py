@@ -5,7 +5,7 @@ from .models import Image,Profile,Comment,Profile,Like
 from django.contrib.auth.decorators import login_required
 import datetime
 from django.contrib.auth.models import User
-# from . forms import PostPictureForm, ProfileEditForm, CommentForm
+from . forms import PostPictureForm, ProfileEditForm, CommentForm
 from django.core.urlresolvers import reverse
 
 
