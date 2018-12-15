@@ -13,3 +13,15 @@ from django.core.urlresolvers import reverse
 def index(request):
     images = Image.objects.all()
     return render(request, 'all-instagram/index.html', {"images":images})
+def profile(request, username):
+    user = User.objects.get(username=username)
+    if not user:
+        return redirect('index')
+
+    profile = Profile.objects.get(user=user)
+    context = {
+        'username': username,
+        'user': user,
+        'profile': profile
+    }
+    return render(request, 'all-instagram/profile.html', context)
