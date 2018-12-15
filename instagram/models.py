@@ -39,5 +39,14 @@ class Image(models.Model):
         return self.comment_set.count()
 
     def __str__(self):
-        return self.title
+        return self.image_name
+
+class Comment(models.Model):
+    post = models.ForeignKey(Image)
+    user = models.ForeignKey(User)
+    comment = models.CharField(max_length=100)
+    posted_on = models.DateTimeField(default=datetime.now)
+
+    def __str__(self):
+        return self.comment
     
