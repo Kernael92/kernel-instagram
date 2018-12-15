@@ -45,3 +45,14 @@ def profile_settings(request, username):
         'form': form
     }
     return render(request, 'all-instagram/profile_settings.html', context)
+def followers(request, username):
+    user = User.objects.get(username=username)
+    user_profile =Profile.objects.get(user=user)
+    profiles = user_profile.followers.all
+
+    context = {
+        'header': 'Followers',
+        'profiles': profiles,
+    }
+
+    return render(request, 'all-instagram/follow_list.html', context)
