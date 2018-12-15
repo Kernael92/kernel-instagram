@@ -7,11 +7,11 @@ class PostPictureForm(ModelForm):
     class Meta:
         model = Image
         fields = ['image_name', 'image']
-# class ProfileEditForm(ModelForm):
-#     class Meta:
-#         model = Profile
-#         fields = ['profile_pic','bio']
-# class CommentForm(ModelForm):
-#     class Meta:
-#         model = Comment
-#         fields = ['comment']
+class ProfileEditForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['profile_pic','bio']
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['comment']
