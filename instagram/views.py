@@ -130,3 +130,29 @@ def add_like(request):
         'post_pk': post_pk
     }
 
+def follow_toggle(request):
+    user_profile =Profile.objects.get(user=request.user)
+    follow_profile_pk = request.POST.get('follow_profile_pk')
+    follow_profile = Profile.objects.get(pk=follow_profile_pk)
+
+    try:
+        if user_profile != follow_profile:
+            if request.POST.get('type') == 'follow':
+                user_profile.following.add(follow_profile)
+                follow_profile.followers.add(user_profile)
+            elif request.POST.get('type') == 'unfollow':
+                user_profile.following.remove(follow_profile)
+                follow_profile.followers.remove(user_profile)
+            user_profile.save()
+            result = 1
+        else:
+            result = 0
+    except:
+        result = 0
+
+    return {
+        'result': result,
+        'type': request.POST.get('type'),
+        'follow_profile_pk': follow_profile_pk
+    }
+
