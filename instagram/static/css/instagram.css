@@ -16,25 +16,53 @@ body {
 .card {
     background-color: #fff;
     margin-bottom: 50px;
-    border: 1px solid #efefef;
+    border: 1px solid #0eddccb2;
     border-radius: 3px;
 }
 .poster__profilepic {
     border-radius: 100%;
-    max-width: 30px;
-    max-height: 30px;
-    width: 30px;
-    height: 30px;
+    max-width: 50px;
+    max-height: 50px;
+    width: 50px;
+    height: 50px;
     margin-right: 5px;
 }
 .poster__name{
-    color: #262626;
+    color: blue;
     font-weight: bold;
     
 }
 .poster__timestamp {
     float: right;
     color: #999;
+}
+.card__main-image {
+    max-width: 100%;
+    max-height: 600px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+.card__panel-body {
+    padding: 20px;
+    padding-bottom: 20px;
+    
+}
+.card__panel-body.likes {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.picture-circle {
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+}
+.picture-square {
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #fff;
+    cursor: pointer;
 }
 
   
@@ -58,6 +86,7 @@ body {
 .navbar {
     background-color: #fff;
     border-bottom-color: #dbdbdb;
+    box-shadow: 10px 10px 5px grey;
 }
 .fa {
     font-size: 25px;
