@@ -37,18 +37,6 @@
                 </button>
             </div>
             {% endif %}
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <ul>
-                    <li><a type="button" class="btn" href="">Change Password</a></li>
-                    <li><a type="button" class="btn" href="{% url 'signout' %}">Logout</a></li>
-                    <li><a type="button" class="btn" data-dismiss="modal">Cancel</a></li>
-                    </ul>
-                </div>
-                </div>
-            </div>
-            </div>
 
             {% if request.user == user %}
             <a class="edit-mobile" href="{% url 'profile_settings' user.username %}">

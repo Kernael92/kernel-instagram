@@ -2,6 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url
 from . import views
+ 
 
 urlpatterns=[
     url(r'^$',views.index, name='index'),
@@ -15,6 +16,8 @@ urlpatterns=[
     url(r'^like/$', views.add_like, name='like'),
     url(r'^comment/$', views.add_comment, name='comment'),
     url(r'^follow_toggle/$', views.follow_toggle, name='follow_toggle'),
+   
+    
    
 
 ]

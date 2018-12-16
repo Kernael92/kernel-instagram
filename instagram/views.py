@@ -11,8 +11,8 @@ from django.core.urlresolvers import reverse
 
 # Create your views here.
 def index(request):
-    if not request.user.is_authenticated():
-        redirect('login')
+    # if not request.user.is_authenticated():
+    #     redirect('Sign Up')
 
     images = Image.objects.all()
     return render(request, 'all-instagram/index.html', {"images":images})
@@ -192,4 +192,6 @@ def follow_toggle(request):
         'type': request.POST.get('type'),
         'follow_profile_pk': follow_profile_pk
     }
+
+
 
