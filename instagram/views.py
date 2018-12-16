@@ -133,7 +133,7 @@ def add_like(request):
 
     return {
         'result': result,
-        'post_pk': post_pk
+        'image_pk': image_pk
     }
 @login_required
 def add_comment(request):

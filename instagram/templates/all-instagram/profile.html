@@ -21,20 +21,22 @@
                 <a class="edit-desktop" href="{% url 'profile_settings' user.username %}">
                 <button class="edit-profile">Edit Profile</button>
                 </a>
-                {% endif %}
                 <div class="options-bubbles" type="button" data-toggle="modal" data-target="#logoutModal">
                 <p class="bubble"></p>
                 <p class="bubble"></p>
                 <p class="bubble"></p>
                 </div>
-            
-            <div class="follow-toggle__container">
-                
+            {% elif request.user.is_authenticated %}  
+            <div class="follow-toggle__container">    
                 <button class="btn btn-primary {% if not following %}follow-user{% else %}unfollow-user{% endif %}" id="{{ profile.pk }}">
-                
+                    {% if not following %}
+                    Follow
+                    {% else %}
+                    Following
+                    {% endif %}    
                 </button>
             </div>
-            
+            {% endif %}
             <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -81,8 +83,8 @@
         <div class="row">
         {% for image in profile.image_set.all reversed %}
             <div class="col-xs-4">
-            <div class="picture-square" style="background-image: url('{{ post.image.url }}');">
-                <a href="{% url 'post' post.pk %}">
+            <div class="picture-square" style="background-image: url('{{ image.image.url }}');">
+                <a href="{% url 'post' image.pk %}">
                 <div class="content">
                     <i class="fa fa-heart" aria-hidden="true"></i> {{ image.get_number_of_likes }}
                     <i class="fa fa-comment" aria-hidden="true"></i> {{ image.get_number_of_comments }}
