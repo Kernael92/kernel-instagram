@@ -11,6 +11,9 @@ from django.core.urlresolvers import reverse
 
 # Create your views here.
 def index(request):
+    if not request.user.is_authenticated():
+        redirect('login')
+        
     images = Image.objects.all()
     return render(request, 'all-instagram/index.html', {"images":images})
 def profile(request, username):
