@@ -5,6 +5,7 @@ body {
     padding: 20px;
     margin: 20px;
     border: 20px;
+    box-shadow: 10px 10px 5px grey;
 
 }
 
@@ -54,8 +55,8 @@ body {
 }
 .picture-circle {
     border-radius: 100%;
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
 }
 .picture-square {
     position: relative;
@@ -64,7 +65,10 @@ body {
     background-color: #fff;
     cursor: pointer;
 }
-
+a {
+    font-family: cursive;
+    font-size: 20px;
+}
   
 .content-wrapper {
     margin-top: 57px;
