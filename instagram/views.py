@@ -13,7 +13,7 @@ from django.core.urlresolvers import reverse
 def index(request):
     if not request.user.is_authenticated():
         redirect('login')
-        
+
     images = Image.objects.all()
     return render(request, 'all-instagram/index.html', {"images":images})
 def profile(request, username):
@@ -29,6 +29,7 @@ def profile(request, username):
     }
     return render(request, 'all-instagram/profile.html', context)
 
+@login_required
 def profile_settings(request, username):
     user = User.objects.get(username=username)
     if request.user != user:
@@ -70,6 +71,7 @@ def following(request, username):
     }
     return render(request, 'all-instagram/follow_list.html', context)
 
+@login_required
 def post_picture(request):
     if request.method == 'POST':
         form = PostPictureForm(data=request.POST, files=request.FILES)
@@ -116,15 +118,16 @@ def likes(request, pk):
     }
     return render(request, 'all-instagram/follow_list.html', context)
 
+@login_required
 def add_like(request):
-    post_pk = request.POST.get('post_pk')
-    post =Image.objects.get(pk=post_pk)
+    image_pk = request.POST.get('image_pk')
+    image =Image.objects.get(pk=image_pk)
     try:
-        like = Like(post=post, user=request.user)
+        like = Like(image=image, user=request.user)
         like.save()
         result = 1
     except:
-        like = Like.objects.get(post=post, user=request.user)
+        like = Like.objects.get(image=image, user=request.user)
         like.delete()
         result = 0
 
@@ -132,15 +135,15 @@ def add_like(request):
         'result': result,
         'post_pk': post_pk
     }
-
+@login_required
 def add_comment(request):
     comment_text = request.POST.get('comment_text')
-    post_pk = request.POST.get('post_pk')
-    post = IGPost.objects.get(pk=post_pk)
+    image_pk = request.POST.get('image_pk')
+    image = Image.objects.get(pk=image_pk)
     commenter_info = {}
 
     try:
-        comment = Comment(comment=comment_text, user=request.user, post=post)
+        comment = Comment(comment=comment_text, user=request.user, image=image)
         comment.save()
 
         username = request.user.username
@@ -154,16 +157,16 @@ def add_comment(request):
 
 
         result = 1
-    except Exception as e:
-        print(e)
+    except:
         result = 0
 
     return {
         'result': result,
-        'post_pk': post_pk,
+        'image_pk': image_pk,
         'commenter_info': commenter_info
     }
 
+@login_required
 def follow_toggle(request):
     user_profile =Profile.objects.get(user=request.user)
     follow_profile_pk = request.POST.get('follow_profile_pk')
