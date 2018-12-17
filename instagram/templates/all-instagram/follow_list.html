@@ -16,14 +16,18 @@
         <img class="picture-circle--small" src="{% static 'images/profile_placeholder.jpg' %}">
       {% endif %}
       <a href="{% url 'profile' profile.user.username %}">{{ profile.user.username }}</a>
-
-      
+      {% if request.user.profile.is_authenticated and profile != request.user.profile %}
         <div class="follow-toggle__container">
-          
+          {% if request.user.profile  is following %}
           <button class="btn btn-primary {% if not following %}follow-user{% else %}unfollow-user{% endif %}">
-            
+            {% elif not following %}
+              Follow
+            {% else %}
+              Following
+            {% endif %}
           </button>
         </div>
+      {% endif %}
       
     </div>
   {% endfor %}

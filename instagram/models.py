@@ -9,11 +9,10 @@ class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     followers = models.ManyToManyField('Profile',related_name="profile_followers",blank=True)
     following = models.ManyToManyField('Profile',related_name="following_profile", blank=True)
-    profile_pic = ProcessedImageField(upload_to='profile_pics',format="JPEG",options={'quality':100},null=True,blank=True)
-    bio = models.CharField(max_length=200, null=True, blank=True)
+    profile_pic = ProcessedImageField(upload_to='profile_pics',format="JPEG",options={'quality':100},null=False,blank=True)
+    bio = models.CharField(max_length=200, null=False, blank=True)
 
     def get_number_of_followers(self):
-        print(self.followers.count())
         if self.followers.count():
             return self.followers.count()
         else:
@@ -27,9 +26,9 @@ class Profile(models.Model):
         return self.user.username
 
 class Image(models.Model):
-    user_profile = models.ForeignKey(Profile,null=True, blank=True)
+    user_profile = models.ForeignKey(Profile,null=False, blank=True)
     image_name = models.CharField(max_length=100)
-    image = ProcessedImageField(upload_to='images/',format='JPEG',options={'quality':100})
+    image = ProcessedImageField(upload_to='images',format='JPEG',options={'quality':100})
     image_caption = models.CharField(max_length =254)
     posted_on = models.DateTimeField(default=datetime.now)
 

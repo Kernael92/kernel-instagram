@@ -9,15 +9,21 @@
       {% csrf_token %}
 
       <label>
-        {{ form.title.label }}
-        {{ form.title }}
-        {{ form.title.errors }}
+        {{ form.image_name.label }}
+        {{ form.image_name }}
+        {{ form.image_name.errors }}
       </label>
       <label>
         {{ form.image.label }}
         {{ form.image }}
         {{ form.image.errors }}
       </label>
+      <label>
+        {{ form.image_caption.label }}
+        {{ form.image_caption }}
+        {{ form.image_caption.errors }}
+      </label>
+    
       <button type="submit" class="btn btn-default">Submit</button>
     </form>
   </div>

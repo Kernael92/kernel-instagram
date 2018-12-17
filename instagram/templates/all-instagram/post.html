@@ -7,7 +7,7 @@
 <div class="row single-post">
   <div class="single-post-card view-update {{ image.pk }}">
     <div class="header">
-      <a href="{% url 'profile' post.user_profile.user.username %}">
+      <a href="{% url 'profile' image.user_profile.user.username %}">
         {% if image.user_profile.profile_pic %}
           <img class="picture-circle--medium" src="{{ image.user_profile.profile_pic.url }}">
         {% else %}
@@ -34,7 +34,7 @@
       </div>
       <ul class="comment-list">
         <li class="comment-list__comment">
-          <a class="user" href="{% url 'profile' post.user_profile.user.username %}">
+          <a class="user" href="{% url 'profile' image.user_profile.user.username %}">
             {{ image.user_profile.user.username }}
           </a>
           <span class="comment">{{ image.image_name }}</span>

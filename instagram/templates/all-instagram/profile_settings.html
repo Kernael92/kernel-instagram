@@ -3,15 +3,16 @@
 {% load bootstrap3%}
 {% load static %}
 
-{% block body_class_override %}maroon{% endblock %}
+
 {% block content %}
 <div class="row profile-settings">
   <div class="col-xs-12">
     <div class="profile-pic-name">
-      {% if user.userprofile.profile_pic %}
+      {% if user.profile.profile_pic %}
         <img class="picture-circle--medium" src="{{ user.profile.profile_pic.url }}">
       {% else %}
-        <img class="picture-circle--medium" src="{% static 'images/profile_placeholder.jpg' %}">
+        <img class="picture-circle--medium" src="{% static 'images/profile_placeholder.jpg' %}" style="border-radius: 100%;
+        width: 200px; height: 200px;">
       {% endif %}
       <span class="username">{{ user.username }}</span>
     </div>
@@ -24,7 +25,7 @@
       </div>
       <div class="form-group">
         {{ form.bio.label }}<br>
-        {{ form.bio|addClass:"form-control" }}
+        {{ form.bio }}
         {{ form.bio.errors }}
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>

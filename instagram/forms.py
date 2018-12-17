@@ -6,7 +6,7 @@ from .models import Image, Profile, Comment
 class PostPictureForm(ModelForm):
     class Meta:
         model = Image
-        fields = ['image_name', 'image']
+        fields = ['image_name', 'image', 'image_caption']
 class ProfileEditForm(ModelForm):
     class Meta:
         model = Profile
