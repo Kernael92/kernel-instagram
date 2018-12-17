@@ -6,7 +6,7 @@ from datetime import datetime
 
 # Create your models here.
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,related_name = 'profile')
     followers = models.ManyToManyField('Profile',related_name="profile_followers",blank=True)
     following = models.ManyToManyField('Profile',related_name="following_profile", blank=True)
     profile_pic = ProcessedImageField(upload_to='profile_pics',format="JPEG",options={'quality':100},null=False,blank=True)
@@ -26,7 +26,7 @@ class Profile(models.Model):
         return self.user.username
     @classmethod
     def search_by_user(cls,search_term):
-        instagram = cls.objects.filter(user__icontains=search_term)
+        instagram = User.objects.filter(username__icontains=search_term)
         return instagram
 
 

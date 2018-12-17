@@ -1,7 +1,6 @@
 from django.shortcuts import render,redirect
-from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import Image,Profile,Comment,Profile,Like
+from .models import Image,Profile,Comment,Like
 from django.contrib.auth.decorators import login_required
 import datetime
 from django.contrib.auth.models import User
@@ -27,6 +26,7 @@ def profile(request, username):
         'user': user,
         'profile': profile
     }
+    
     return render(request, 'all-instagram/profile.html', context)
 
 @login_required
@@ -76,12 +76,12 @@ def post_picture(request):
     if request.method == 'POST':
         form = PostPictureForm(data=request.POST, files=request.FILES)
         if form.is_valid():
-            post = Image(user_profile=request.user.profile,
+            image = Image(user_profile=request.profile.user,
                           image_name=request.POST['image_name'],
                           image=request.FILES['image'],
                           image_caption=request.POST['image_caption'],
                           posted_on=datetime.datetime.now())
-            post.save()
+            image.save()
             return redirect(reverse('profile', kwargs={'username': request.user.username}))
     else:
         form = PostPictureForm()
