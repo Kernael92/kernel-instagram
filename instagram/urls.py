@@ -16,6 +16,8 @@ urlpatterns=[
     url(r'^like/$', views.add_like, name='like'),
     url(r'^comment/$', views.add_comment, name='comment'),
     url(r'^follow_toggle/$', views.follow_toggle, name='follow_toggle'),
+    url(r'^search/', views.search_profile, name='search_profile'),
+    
    
     
    

@@ -37,7 +37,7 @@ def profile_settings(request, username):
 
     if request.method == 'POST':
         print(request.POST)
-        form = ProfileEditForm(request.POST, files=request.FILES)
+        form = ProfileEditForm(request.POST,  files=request.FILES)
         if form.is_valid():
             form.save()
             return redirect(reverse('profile', kwargs={'username': user.username}))
@@ -76,7 +76,7 @@ def post_picture(request):
     if request.method == 'POST':
         form = PostPictureForm(data=request.POST, files=request.FILES)
         if form.is_valid():
-            post = Image(user_profile=request.profile.user,
+            post = Image(user_profile=request.user.profile,
                           image_name=request.POST['image_name'],
                           image=request.FILES['image'],
                           image_caption=request.POST['image_caption'],
