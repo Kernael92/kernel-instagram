@@ -24,6 +24,12 @@ class Profile(models.Model):
             return 0 
     def __str__(self):
         return self.user.username
+    @classmethod
+    def search_by_user(cls,search_term):
+        instagram = cls.objects.filter(user__icontains=search_term)
+        return instagram
+
+
 
 class Image(models.Model):
     user_profile = models.ForeignKey(Profile,null=False, blank=True)

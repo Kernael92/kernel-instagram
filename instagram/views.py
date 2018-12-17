@@ -192,6 +192,18 @@ def follow_toggle(request):
         'type': request.POST.get('type'),
         'follow_profile_pk': follow_profile_pk
     }
+@login_required
+def search_profile(request):
+    if 'profile' in request.GET and request.GET["profile"]:
+        search_term = request.GET.get("profile")
+        searched_profiles = Profile.search_by_user(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'all-instagram/search.html', {"message":message, "profiles":searched_profiles})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'all-instagram/search.html', {"message":message})
+
 
 
 
