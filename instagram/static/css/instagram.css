@@ -5,7 +5,11 @@ body {
     padding: 40px;
     margin: 40px;
     border: 40px;
-    box-shadow: 10px 10px 5px grey;
+    background-image: url('../images/img4.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
 
 
 }
@@ -27,16 +31,21 @@ body {
     max-height: 200px;
     width: 200px;
     height: 200px;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 .poster__name{
     color: blue;
     font-weight: bold;
+    font-size: 30px;
+    font-family: cursive;
     
 }
+    
 .poster__timestamp {
     float: right;
-    color: #999;
+    color: darkgray;
+    font-size: 30px;
+    font-family: cursive;
 }
 .card__main-image {
     max-width: 100%;
@@ -133,4 +142,17 @@ a {
     box-shadow: 10px 10px 5px grey;
     
 }
+
+
+.form-group {
+    font-size: 20px;
+    font-family: cursive;
+    color: darkgray;
+}
+.username {
+    font-size: 20px;
+    font-family: cursive;
+    color: darkgray;
+}
+
 
