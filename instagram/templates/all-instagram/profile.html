@@ -9,9 +9,9 @@
         <div class="row">
         <div class="col-sm-3 col-md-3 col-lg-3 left">
             {% if profile.profile_pic %}
-            <img class="picture-circle" src="{{ profile.profile_pic.url }}">
+            <img class=" picture-circle" src="{{ profile.profile_pic.url }}">
             {% else %}
-            <img class="picture-circle" src="{% static 'images/profile_placeholder.jpg' %}">
+            <img class=" picture-circle" src="{% static 'images/profile_placeholder.jpg' %}">
             {% endif %}
         </div>
         <div class="col-sm-3 col-md-3 col-lg-3 right">
@@ -52,36 +52,63 @@
             <div class="description">
                 <p>{% if profile.bio %}{{ profile.bio }}{% endif %}</p>
             </div>
+            
+            
+
+            </div>
             </div>
         </div>
-        <div class="mobile-block">
-            <div class="description">
-            <p>{% if profile.bio %}{{ profile.bio }}{% endif %}</p>
-            </div>
-            <ul class="stats">
-                <div class="col-xs-4"><li class="stats__count"><span>{{ profile.image_set.count }}</span><br> posts</li></div>
-                <div class="col-xs-4"><a href="{% url 'followers' username=profile.user.username %}"><li class="stats__count"><span>{{ profile.get_number_of_followers }}</span><br> followers</li></a></div>
-                <div class="col-xs-4"><a href="{% url 'following' username=profile.user.username %}"><li class="stats__count"><span>{{ profile.get_number_of_following }}</span><br> following</li></a></div>
-            </ul>
-        </div>
+        
         </div>
     </div>
     
     <div class="profile__body">
-        <div class="row">
+        
         {% for image in profile.image_set.all reversed %}
-            <div class="col-xs-4">
-            <div class="picture-square" style="background-image: url('{{ image.image.url }}'); width: 100%; ">
-                <a href="{% url 'post' image.pk %}">
-                <div class="content">
-                    <i class="fa fa-heart" aria-hidden="true"></i> {{ image.get_number_of_likes }}
-                    <i class="fa fa-comment" aria-hidden="true"></i> {{ image.get_number_of_comments }}
+        <div class="row">
+            <div class="posts">
+                <div class="col-sm-4 col-md-4 col-lg-4 ">
+                    <img  src="{{ image.image.url }}" style="width: 100%; box-shadow: 10px 10px 5px grey;
+                    margin: 10px;" class="img-responsive" alt=""  data-toggle="modal" data-target="#myModal{{image.id}}" >
                 </div>
-                </a>
+                <div class="modal fade" id="myModal{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="extra" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title" id="myModalLongTitle">{{image.image_name}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span   aria-hidden="true" >&times;</span>
+                            </button>
+                        </div>
+                    
+                        <div class="modal-body">
+                            <img id="myImg"class="card-img-top" class="img-responsive" src="{{image.image.url}}" style="width: 100%;"><br><br>
+                            <p>{{image.image_name}}</p>
+                            <p>Posted {{image.posted_on|timesince}} </p>
+                    
+                            
+                            <p> {{ image.image_caption }} </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            </div>
-        {% endfor %}
         </div>
+        
+            <div class="col-sm-4">
+                
+            <div class="picture-square" style="background-image: url('{{ image.image.url }}'); width: 100%; ">
+                <div class="content"></div>
+                
+                <a href="{% url 'post' image.pk %}">
+                    <i class="fa fa-heart" aria-hidden="true">{{ image.get_number_of_likes }}</i> 
+                    <i class="fa fa-comment" aria-hidden="true">{{ image.get_number_of_comments }}</i>
+                </a>
+                
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+       
     </div>    
 </div>   
 {%endblock %}

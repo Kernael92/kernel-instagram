@@ -2,10 +2,11 @@ html {
     height: 100%;
 }
 body {
-    padding: 20px;
-    margin: 20px;
-    border: 20px;
+    padding: 40px;
+    margin: 40px;
+    border: 40px;
     box-shadow: 10px 10px 5px grey;
+
 
 }
 
@@ -22,11 +23,11 @@ body {
 }
 .poster__profilepic {
     border-radius: 100%;
-    max-width: 50px;
-    max-height: 50px;
-    width: 50px;
-    height: 50px;
-    margin-right: 5px;
+    max-width: 200px;
+    max-height: 200px;
+    width: 200px;
+    height: 200px;
+    margin-right: 10px;
 }
 .poster__name{
     color: blue;
@@ -123,12 +124,13 @@ a {
     display: inline-block;
     margin-right: 60px;
 }
-/* .content {
+.post {
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #fff;
     cursor: pointer;
-    display: none;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.3);
-  } */
+    box-shadow: 10px 10px 5px grey;
+    
+}
 
