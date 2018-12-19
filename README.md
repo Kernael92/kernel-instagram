@@ -1,5 +1,5 @@
 # Kernael92's Instagram
-# https://kernel-instagram.herokuapp.com/
+# https://kernel-instgaram.herokuapp.com/
 
 
 
