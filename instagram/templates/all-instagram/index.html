@@ -10,24 +10,22 @@
         <div class="card view-update {{ image.pk }}">
             <div class="card__panel-head">
                 <div class="poster__info">
-                    <div class="col-md-6 col-lg-6">
-                        <a href="{% url 'profile' image.user_profile.user.username %}" class="poster__name">
+                    <div class="col-sm-6 col-md-6 center">
                             {% if image.user_profile.profile_pic %}
-                            <img class="poster__profilepic" src="{{ image.user_profile.profile_pic.url }}" style="height: 100%; width: 500px;
-                            height: 500px;">
+                            <img class="poster__profilepic" src="{{ image.user_profile.profile_pic.url }}" style="width: 100%; ">
                             {% else %}
                             <img class="poster__profilepic" src="{% static 'images/profile_placeholder.jpg' %}">
                             {% endif %}
-                            {{ image.user_profile.user.username }}
                         </a>
-                        <!-- <span class="poster__timestamp">
+                        <h1><a href="{% url 'profile' username=image.user_profile.user.username%}">{{image.user_profile.user.username}}</a></h1>
+                        <span class="poster__timestamp">
                             {{ image.posted_on|timesince }}
-                        </span> -->
+                        </span>
                     </div>
                     
                 </div>
             </div>
-            <!-- <img class="card__main-image" src="{{ image.image.url }}">
+            <img class="card__main-image" src="{{ image.image.url }}">
             <div class="card__panel-body">
                 <a href="{% url 'likes' image.pk %}">
                     <div class="likes">
@@ -38,17 +36,13 @@
                 </a>
                 <ul class="comment-list">
                     <li class="comment-list__comment">
-                    <a class="user" href="{% url 'profile' image.user_profile.user.username %}">
-                        {{ image.user_profile.user.username }}
-                    </a>
                     <span class="comment">{{ image.image_name | safe}}</span>
                     </li>
                     <a class="view-more"></a>
                     {% for comment in image.comment_set.all %}
                     <li class="comment-list__comment">
-                        <a href="{% url 'profile' comment.user.username %}" class="user">
                         {{ comment.user.username }}
-                        </a>
+                        
                         <span class="comment">{{ comment.comment }}</span>
                     </li>
                     {% endfor %}
@@ -64,7 +58,7 @@
                     </div>
                     </section>
                 {% endif %}
-            <!-- </div> -->
+            </div>
         </div>
      </div>
 {% endfor %}

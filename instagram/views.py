@@ -14,11 +14,12 @@ def index(request):
     #     redirect('Sign Up')
 
     images = Image.objects.all()
-    return render(request, 'all-instagram/index.html', {"images":images})
+    return render(request, 'all-instagram/index.html',{"images":images})
+
 def profile(request, username):
     user = User.objects.get(username=username)
     if not user:
-        return redirect('index')
+        return redirect('home')
 
     profile = Profile.objects.get(user=user)
     context = {
@@ -33,7 +34,7 @@ def profile(request, username):
 def profile_settings(request, username):
     user = User.objects.get(username=username)
     if request.user != user:
-        return redirect('index')
+        return redirect('home')
 
     if request.method == 'POST':
         print(request.POST)
@@ -78,7 +79,7 @@ def post_picture(request):
     if request.method == 'POST':
         form = PostPictureForm(data=request.POST, files=request.FILES)
         if form.is_valid():
-            image = Image(user_profile=request.user.username,
+            image = Image(user_profile=request.userprofile,
                           image_name=request.POST['image_name'],
                           image=request.FILES['image'],
                           image_caption=request.POST['image_caption'],

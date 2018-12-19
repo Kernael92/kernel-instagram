@@ -5,8 +5,8 @@ from . import views
  
 
 urlpatterns=[
-    url(r'^$',views.index, name='index'),
-    url(r'^profile/(?P<username>[-_\w.]+)/$', views.profile, name='profile'),
+    url(r'^$',views.index, name='home'),
+    url(r'^profile/(?P<username>[-_\w.]+)/', views.profile, name='profile'),
     url(r'^profile/(?P<username>[-_\w.]+)/edit/$', views.profile_settings, name='profile_settings'),
     url(r'^profile/(?P<username>[-_\w.]+)/followers/$', views.followers, name='followers'),
     url(r'^profile/(?P<username>[-_\w.]+)/following/$', views.following, name='following'),
@@ -16,7 +16,7 @@ urlpatterns=[
     url(r'^like/$', views.add_like, name='like'),
     url(r'^comment/$', views.add_comment, name='comment'),
     url(r'^follow_toggle/$', views.follow_toggle, name='follow_toggle'),
-    url(r'^search/', views.search_profile, name='search_profile'),
+    url(r'^search/$', views.search_profile, name='search_profile'),
     
    
     
