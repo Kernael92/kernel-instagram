@@ -21,11 +21,7 @@
                 <a  href="{% url 'profile_settings' user.username %}">
                 <button class="edit-profile">Edit Profile</button>
                 </a>
-                <div class="options-bubbles" type="button" data-toggle="modal" data-target="#logoutModal">
-                <p class="bubble"></p>
-                <p class="bubble"></p>
-                <p class="bubble"></p>
-                </div>
+                
             {% elif request.user.is_authenticated %}  
             <div class="follow-toggle__container">    
                 <button class="btn btn-primary {% if not following %}follow-user{% else %}unfollow-user{% endif %}" id="{{ profile.pk }}">
@@ -38,12 +34,12 @@
             </div>
             {% endif %}
 
-            {% if request.user == user %}
+            <!-- {% if request.user == user %}
             <a class="edit-mobile" href="{% url 'profile_settings' user.username %}">
                 <button class="edit-profile">Edit Profile</button>
             </a>
-            {% endif %}
-            <div class="desktop-block">
+            {% endif %} -->
+            <div class="block">
             <ul class="stats">
                 <li class="stats__count"><span>{{ profile.image_set.count }}</span> Posts</li>
                 <a href="{% url 'followers' username=profile.user.username %}"><li class="stats__count"><span>{{ profile.get_number_of_followers }}</span> Followers</li></a>

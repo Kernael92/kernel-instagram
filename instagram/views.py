@@ -75,11 +75,11 @@ def following(request, username):
     return render(request, 'all-instagram/follow_list.html', context)
 
 @login_required
-def post_picture(request):
+def post_picture(request,username):
     if request.method == 'POST':
         form = PostPictureForm(data=request.POST, files=request.FILES)
         if form.is_valid():
-            image = Image(user_profile=request.userprofile,
+            image = Image(user_profile=request.user.username,
                           image_name=request.POST['image_name'],
                           image=request.FILES['image'],
                           image_caption=request.POST['image_caption'],
@@ -91,6 +91,7 @@ def post_picture(request):
 
     context = {
         'form': form
+        
     }
     return render(request, 'all-instagram/post_picture.html', context)
 

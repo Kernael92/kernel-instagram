@@ -28,7 +28,7 @@ SECRET_KEY=config('SECRET_KEY')
 DEBUG=config('DEBUG', default=False, cast=bool)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG=False
+DEBUG=True
 
 
 
