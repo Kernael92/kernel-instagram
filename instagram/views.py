@@ -188,6 +188,7 @@ def follow_toggle(request):
             result = 1
         else:
             result = 0
+            
     except:
         result = 0
 

@@ -25,6 +25,12 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+    def save_profile(self):
+        self.save()
+    
+    def delete_profile(self):
+        self.delete()
+
     @classmethod
     def search_by_user(cls,search_term):
         instagram = User.objects.filter(username__icontains=search_term)

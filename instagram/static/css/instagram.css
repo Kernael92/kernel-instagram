@@ -181,5 +181,12 @@ label {
     color: darkgray;
 
 }
+h2 {
+    display: inline-block;
+    margin-right: 60px;
+    font-size: 35px;
+    font-family: cursive;
+    color: darkgray;
+}
 
 

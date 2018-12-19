@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         {%if profiles%}
-        <h2>Found{{profiles|length}} of searched term {{message}}</h2>
+        <h2><a href="{%url 'profile' request.user.username%}">Found {{profiles|length}}  of searched term {{message}}</a></h2>
         {%else%}
         <h2>Found 0 profiles for search term {{message}} </h2>
         {%endif%}

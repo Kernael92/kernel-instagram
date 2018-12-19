@@ -18,12 +18,13 @@
             <div class="name-buttons">
             <h1 class="username" style="font-size: 20px; font-family: cursive; color: darkgray;">{{ user.username }}</h1>
             {% if request.user == user %}
-                <a  href="{% url 'profile_settings' user.username %}">
+                <a  href="{% url 'profile_settings' request.user.username %}">
                 <button class="edit-profile">Edit Profile</button>
                 </a>
                 
             {% elif request.user.is_authenticated %}  
-            <div class="follow-toggle__container">    
+            <div class="follow-toggle__container">
+                <a href="{%url 'follow_toggle' %}">
                 <button class="btn btn-primary {% if not following %}follow-user{% else %}unfollow-user{% endif %}" id="{{ profile.pk }}">
                     {% if not following %}
                     Follow
@@ -31,7 +32,9 @@
                     Following
                     {% endif %}    
                 </button>
-            </div>
+                </a> 
+            </div>   
+                
             {% endif %}
 
             <!-- {% if request.user == user %}
@@ -79,11 +82,11 @@
                     
                         <div class="modal-body">
                             <img id="myImg"class="card-img-top" class="img-responsive" src="{{image.image.url}}" style="width: 100%;"><br><br>
-                            <p>{{image.image_name}}</p>
+                            <p>Name: {{image.image_name}}</p>
                             <p>Posted {{image.posted_on|timesince}} </p>
                     
                             
-                            <p> {{ image.image_caption }} </p>
+                            <p> Caption: {{ image.image_caption }} </p>
                         </div>
                     </div>
                 </div>
